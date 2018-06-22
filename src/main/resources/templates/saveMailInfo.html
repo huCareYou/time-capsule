@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>邮件填写</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/jedate.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main_01.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.jedate.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/modernizr.js}"></script>
+</head>
+
+<script>
+    $(function () {
+        $("#sendTime").jeDate({
+            festival: true,
+            format: "YYYY-MM-DD hh:00:00"
+        });
+    })
+    
+    function closePopup(){
+        $("#popup").removeClass("is-visible");
+    }
+
+    function save() {
+        var title = $("#title").val().trim();
+        if(title ==''){
+            $("#msg").text('邮件标题未填写！');
+            return;
+        }
+        var receivingMail = $("#receivingMail").val().trim();
+        var ret = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+        if(!ret.test(receivingMail)){
+            $("#msg").text('邮箱格式填写错误！');
+            return;
+        }
+
+        var sendTime = $("#sendTime").val();
+        if(sendTime == ''){
+            $("#msg").text('邮件发送时间未选择！');
+            return;
+        }
+        var content = $("#content").val();
+        if(content == ''){
+            $("#msg").text('邮件正文为空！');
+            return;
+        }
+        var url = "/saveMailInfo";
+        var date = {
+            title:title,
+            receivingMail:receivingMail,
+            sendTime:sendTime,
+            content:content
+        };
+        $.post(
+            url,
+            date,
+            function (date) {
+                $("#msg").text(date);
+            },
+            "json"
+        )
+    }
+
+</script>
+
+<body>
+
+    <div class="header">
+        <div class="container">
+            <a class="logo" th:href="@{/}">邮件胶囊</a>
+            <ul class="nav">
+                <li><a th:href="@{/}">首页</a></li>
+                <li class="active"><a th:href="@{/saveUI}">创建胶囊</a></li>
+                <li><a th:href="@{/findUI}">查看胶囊</a></li>
+            </ul>
+            <ul class="nav nav-user">
+                <li><a href="http://www.timepill.net/">胶囊日记</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-header">创建邮件胶囊</h1>
+        <div class="main">
+            <label class="row">邮件标题：</label>
+            <label class="row">
+                <input name="title" id="title" style="width:220px" type="text">
+            </label>
+
+            <label class="row">收件地址：</label>
+            <label class="row">
+                <input type="email" name="receivingMail" id="receivingMail"style="width:220px">
+            </label>
+
+
+            <label class="row">发送时间：</label>
+            <label class="row">
+                <input id="sendTime" placeholder="YYYY-MM-DD hh:00:00" type="text" style="width:220px">
+
+            </label>
+            <label class="row">
+                <span class="tips">到达发送时间时，自动将邮件发送给收件地址。</span>
+            </label>
+
+
+            <label class="row">邮件内容：</label>
+            <textarea name="content" id="content" value="" style="margin-bottom: 0" rows="8" cols="50"></textarea>
+
+            <label class="row">
+                <span class="tips">邮件内容不能超过5000字。</span>
+            </label>
+
+
+
+            <p style="margin-top: 20px;">
+                <button id="save" class="cd-popup-trigger" onclick="save()">添加邮件胶囊</button>
+            </p>
+
+            <div class="cd-popup" role="alert" id="popup">
+                <div class="cd-popup-container">
+                    <p id="msg">一个可爱的提示框n(*≧▽≦*)n</p>
+                    <ul class="cd-buttons">
+                       <!-- <li><a href="#0" onclick="closePopup()">确定</a></li>
+                        <li><a href="#0" onclick="closePopup()">取消</a></li>-->
+                    </ul>
+                    <a href="#0" class="cd-popup-close img-replace">Close</a>
+                </div> <!-- cd-popup-container -->
+            </div> <!-- cd-popup -->
+        </div>
+    </div>
+</body>
+</html>

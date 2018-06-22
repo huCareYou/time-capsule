@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: Hk-13120165195
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.75.58.245:3306/time_capsule?characterEncoding=utf-8&&useSSL=false
+
+scheduler:
+  cronExpression:  30 9,19,29,39,49,59 * * * ?
+  afterSceonds: 600000
+
+server:
+  port: 8080
+  servlet:
+    context-path: /

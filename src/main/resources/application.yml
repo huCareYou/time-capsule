@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: pro
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    dialect: MySQL5Dialect
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false

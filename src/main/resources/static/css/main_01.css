@@ -1,0 +1,52 @@
+body { padding-bottom:40px; }
+
+a { color: #ff0033; }
+a:hover { color:#fff; background-color: #ff0033; }
+
+
+.home-main { width: 400px; margin: 50px auto;  }
+.logo-big { width: 400px; height: 200px; margin-bottom: 10px; }
+.title { text-align: center; color: orangered; }
+.action { padding: 0 40px; }
+.action a { display: block; color:#333; text-align: center; font-size: 18px; }
+.action a:hover { background-color: transparent; color: #ff0033; }
+.action a.put { float:left; }
+.action a.open { float:right; }
+.action a span{ display: block; font-size: 36px; }
+.home-footer { clear: both; padding-top: 80px; text-align: center }
+.home-footer a { color: #999; }
+.home-footer a:hover { color: #fff; }
+
+
+.header .logo { background-image: url('../images/mail-logo.jpg') }
+.tips { padding:0; margin:10px; color:#999; }
+
+.pill p, .pill pre { line-height: 1.8em; }
+.pill .content { padding:15px 20px; border: 1px solid #ff0033; }
+
+input[type="button"], input[type="submit"], button, .btn {
+    background:#ff0033;
+    filter:none;
+    border:1px solid #ff0033;
+    color:#fff;
+}
+input[type="button"]:hover, input[type="submit"]:hover, button:hover, .btn:hover {
+    background:#cc0033;
+    border:1px solid #cc0033;
+    filter:none;
+    color:#fff;
+}
+input[type="button"]:active, input[type="submit"]:active, button:active, .btn:active {
+    background:#cc0033;
+    filter:none;
+    border:1px; solid:#990033;
+    border-left-color:#660033;
+    border-top-color:#660033;
+}
+input[type="button"]:disabled, input[type="submit"]:disabled, button:disabled, .btn:disabled {
+    background:#cc0033;
+    color:#AAA;
+}
+input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
+    border: 1px solid #ff0033;
+}

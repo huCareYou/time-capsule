@@ -13,3 +13,6 @@ server:
   port: 80
   servlet:
     context-path: /
+
+logging:
+  config: classpath:logback-spring-pro.xml
